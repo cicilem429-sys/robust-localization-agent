@@ -77,13 +77,8 @@ def propose(history, pool):
     if len(history) == 1:
         return {'loss': 'huber', 'scale': 3.0}, '基线反馈后尝试减轻大残差影响'
     best = min(history, key=lambda h: h['selection_score'])
-    last = history[-1]
-    if last['selection_score'] >= best['selection_score']:
-        target = 'cauchy' if best['config']['loss'] != 'cauchy' else 'soft_l1'
-        reason = '上一轮未超过当前最佳，切换损失函数以探索不同异常值抑制方式'
-    else:
-        target = best['config']['loss']
-        reason = '上一轮改善验证指标，围绕该损失函数继续探索尺度'
+    target = 'cauchy' if best['config']['loss'] != 'cauchy' else 'soft_l1'
+    reason = '依据当前最佳损失探索备选损失，并用残差反馈选择尺度'
     preferred = [c for c in available if c['loss'] == target] or available
     # Match the scale to residual feedback without reading any individual truth.
     residual_scale = max(1.0, 2*best['metrics']['median_abs_residual_m'])

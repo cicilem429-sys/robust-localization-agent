@@ -1,0 +1,41 @@
+{
+  "selected": "adaptive_trim",
+  "selection_basis": "Development only: clean constraints satisfied at both noise levels; adaptive trimming reduces pooled outlier CEP90 versus fixed trimming; no stable poor-geometry advantage.",
+  "development_seeds": [
+    20261031,
+    20261032
+  ],
+  "test_seeds": [
+    20261121,
+    20261122,
+    20261123,
+    20261124
+  ],
+  "configs": {
+    "least_squares": {
+      "method": "fixed",
+      "loss": "linear",
+      "scale": 1.0
+    },
+    "fixed_cauchy": {
+      "method": "fixed",
+      "loss": "cauchy",
+      "scale": 3.0
+    },
+    "fixed_trim": {
+      "method": "adaptive",
+      "gate": 3.0,
+      "scale": 3.0,
+      "trim": 4.0,
+      "mad_multiplier": 0.0
+    },
+    "adaptive_trim": {
+      "method": "adaptive",
+      "gate": 3.0,
+      "scale": 3.0,
+      "trim": 4.0,
+      "mad_multiplier": 3.0
+    }
+  },
+  "frozen_before_test": true
+}

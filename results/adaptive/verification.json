@@ -1,0 +1,21 @@
+{
+  "checks": "passed",
+  "intervals": {
+    "1.0": {
+      "clean_cep90_ratio_95_percentile_interval": [
+        1.0,
+        1.0
+      ],
+      "replicates": 2000,
+      "bootstrap_seed": 20261201
+    },
+    "2.0": {
+      "clean_cep90_ratio_95_percentile_interval": [
+        1.0,
+        1.0
+      ],
+      "replicates": 2000,
+      "bootstrap_seed": 20261201
+    }
+  }
+}
